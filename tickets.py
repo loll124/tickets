@@ -17,8 +17,12 @@ def get_driver():
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    options.add_argument("--disable-gpu")
+    options.binary_location = "/usr/bin/chromium"
+    driver = webdriver.Chrome(
+        service=Service("/usr/bin/chromedriver"),
+        options=options
+    )
     return driver
 
 def check_for_tickets(driver):
